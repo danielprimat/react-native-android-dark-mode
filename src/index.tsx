@@ -1,22 +1,22 @@
 import { NativeModules, Platform } from 'react-native';
 
 const LINKING_ERROR =
-  `The package 'react-native-android-dark-mode' doesn't seem to be linked. Make sure: \n\n` +
+  `The package 'react-native-awesome-module' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-const AndroidDarkMode = NativeModules.AndroidDarkMode
-  ? NativeModules.AndroidDarkMode
+const DarkModeModule = NativeModules.DarkModeModule
+  ? NativeModules.DarkModeModule
   : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return AndroidDarkMode.multiply(a, b);
+export function setNightMode(isDarkMode:boolean):void {
+  return DarkModeModule.setNightMode(isDarkMode);
 }

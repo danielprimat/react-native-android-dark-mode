@@ -1,6 +1,6 @@
 # react-native-android-dark-mode
 
-change OS to dark mode 
+change OS to dark mode
 
 ## Installation
 
@@ -11,11 +11,11 @@ npm install react-native-android-dark-mode
 ## Usage
 
 ```js
-import { multiply } from "react-native-android-dark-mode";
+import { setNightMode } from "react-native-android-dark-mode";
 
 // ...
 
-const result = await multiply(3, 7);
+setNightMode(isNightmode)
 ```
 
 ## Contributing

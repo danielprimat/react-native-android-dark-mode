@@ -1,31 +1,27 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-android-dark-mode';
+import {  View, useColorScheme, Switch } from 'react-native';
+import {setNightMode} from "react-native-android-dark-mode";
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
+    <View style={{
+      backgroundColor: isDarkMode ? 'black' : 'green', flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <Switch
+        trackColor={{ false: '#767577', true: '#81b0ff' }}
+        thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={() => {
+          setNightMode(!isDarkMode)
+        }}
+        value={isDarkMode}
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});
